@@ -6,8 +6,9 @@ pipeline{
     stages {
 
         stage("Build") { 
-            echo "========== Running build =========="
             steps {
+                echo "========== Running build =========="
+                
                 script {
                     sh "npm install"
                 }
