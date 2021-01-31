@@ -1,45 +1,42 @@
 pipeline{
     agent any
+
     tools {
-        nodejs 'default-nodejs'
+        nodejs 'node'
     }
+
     stages {
 
-        stage("Build") { 
+        stage("Clone Repository") {
             steps {
-                echo "========== Running build =========="
+                git 'https://github.com/pedroschmid/Pipeline.git'
+                git 'checkout develop'
+            }
+        }
+
+        stage("Install Dependencies") { 
+            steps {
+                sh "npm install"
                 
-                script {
-                    sh "npm install"
-                }
             }
         }
 
-        stage("Test") {
+        stage("Testing") {
             steps {
-                echo "========== Running tests =========="
-
-                script {
-                    sh "npm run test"
-                }
+                sh "npm run test"
             }
         }
 
-        stage("Start"){
-            steps {
-                echo "========== Running start =========="
+        // stage("Start") {
+        //     steps {
+        //         sh 'npm start'
+        //     }
+        // }
 
-                script {
-                    sh 'npm start'
-                }
-            }
-        }
-
-        stage("deploy") {
-            steps {
-                echo "========== Deploying application =========="
-            }
+        // stage("Deploy") {
+        //     steps {
+        //         echo "========== Deploying application =========="
+        //     }
             
-        }
     }
 }
