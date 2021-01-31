@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - ./volumes/jenkins_home:/var/jenkins_home
+  postgres:
+    container_name: postgres
+    image: postgres:9.6
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./volumes/postgresql:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=application
+  application:
+    container_name: application
+    build: ./application
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      
+    
