@@ -15,9 +15,8 @@ pipeline{
 
         stage("Install Dependencies") { 
             steps {
-                sh "pwd"
-
                 dir("application") {
+                    sh 'ls'
                     sh "npm install" 
                 }
             }
@@ -25,9 +24,8 @@ pipeline{
 
         stage("Testing") {
             steps {
-                sh "pwd"
-
                 dir("application") {
+                    sh 'ls'
                     sh "npm run test" 
                 }
             }
