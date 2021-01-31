@@ -16,7 +16,6 @@ pipeline{
         stage("Install Dependencies") { 
             steps {
                 dir("application") {
-                    sh 'ls'
                     sh "npm install" 
                 }
             }
@@ -25,22 +24,9 @@ pipeline{
         stage("Testing") {
             steps {
                 dir("application") {
-                    sh 'ls'
                     sh "npm run test" 
                 }
             }
-        }
-
-        // stage("Start") {
-        //     steps {
-        //         sh 'npm start'
-        //     }
-        // }
-
-        // stage("Deploy") {
-        //     steps {
-        //         echo "========== Deploying application =========="
-        //     }
-            
+        }   
     }
 }
