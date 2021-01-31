@@ -15,14 +15,21 @@ pipeline{
 
         stage("Install Dependencies") { 
             steps {
-                sh "npm install"
-                
+                sh "pwd"
+
+                dir("application") {
+                    sh "npm install" 
+                }
             }
         }
 
         stage("Testing") {
             steps {
-                sh "npm run test"
+                sh "pwd"
+
+                dir("application") {
+                    sh "npm run test" 
+                }
             }
         }
 
