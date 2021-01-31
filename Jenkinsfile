@@ -10,7 +10,6 @@ pipeline{
         stage("Clone Repository") {
             steps {
                 git 'https://github.com/pedroschmid/Pipeline.git'
-                git 'checkout develop'
             }
         }
 
